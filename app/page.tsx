@@ -210,7 +210,7 @@ export default function Home() {
             <figure className="cover-sacramental">
               <Image
                 className="cover-sacramental-image"
-                src={`${basePath}/sacramaento.jpeg`}
+                src={`${basePath}/sacramento-transparente.png`}
                 alt="Ilustración de una custodia, la Santa Mujer Verónica y un elemento floral"
                 width={1600}
                 height={1600}
@@ -276,6 +276,22 @@ export default function Home() {
       </nav>
 
       <main>
+        <section
+          className="estandarte-section"
+          aria-label="Estandarte de la Hermandad Sacramental de la Candelaria"
+        >
+          <figure className="estandarte-frame">
+            <Image
+              className="estandarte-image"
+              src={`${basePath}/Estandarte%20de%20la%20Hermandad%20de%20la%20Candelaria.png`}
+              alt="Diseño del estandarte de la Hermandad Sacramental de la Candelaria"
+              width={1672}
+              height={941}
+              unoptimized
+            />
+          </figure>
+        </section>
+
         <section
           className="welcome section-shell"
           aria-labelledby="welcome-title"

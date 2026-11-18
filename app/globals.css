@@ -156,10 +156,10 @@ a {
 .cover {
   position: relative;
   overflow: hidden;
-  padding: 28px 0 24px;
+  padding: 34px 0 26px;
   background:
-    radial-gradient(ellipse at 50% 30%, rgb(126 35 50 / 38%), transparent 58%),
-    linear-gradient(135deg, #4a1725, #32101a 56%, #250b13);
+    radial-gradient(ellipse at 50% 25%, rgb(126 35 50 / 42%), transparent 58%),
+    linear-gradient(135deg, #561b2b, #32101a 56%, #250b13);
   color: var(--paper);
 }
 
@@ -171,6 +171,17 @@ a {
   pointer-events: none;
 }
 
+.cover::after {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(215 193 143 / 48%), transparent);
+  content: "";
+  pointer-events: none;
+}
+
 .cover-inner {
   position: relative;
   width: min(1440px, calc(100% - 64px));
@@ -178,26 +189,33 @@ a {
 }
 
 .cover-identity {
-  min-height: 215px;
+  min-height: 292px;
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.7fr) minmax(0, 0.8fr);
-  align-items: center;
-  gap: clamp(18px, 3vw, 44px);
+  place-items: center;
 }
 
-.cover-crest,
+.cover-brand,
 .cover-heading {
   min-width: 0;
 }
 
+.cover-brand {
+  width: min(100%, 820px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
 .official-crest--cover {
-  width: clamp(110px, 11vw, 150px);
+  width: clamp(88px, 9vw, 116px);
   height: auto;
   aspect-ratio: 1199 / 1312;
-  padding: 8px;
-  border: 1px solid rgb(215 193 143 / 75%);
-  background: var(--paper);
-  justify-self: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  filter: drop-shadow(0 5px 12px rgb(0 0 0 / 22%));
 }
 
 .cover-heading {
@@ -227,20 +245,33 @@ a {
 }
 
 .cover-heading p {
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   color: rgb(252 250 245 / 88%);
   font-size: 20px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
+.cover-heading::after {
+  width: min(250px, 52%);
+  height: 1px;
+  display: block;
+  margin: 19px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  content: "";
+}
+
 .cover-sacramental {
-  width: clamp(150px, 18vw, 220px);
+  width: clamp(150px, 17vw, 220px);
   aspect-ratio: 1;
   margin: 0 auto;
-  padding: 5px;
-  border: 1px solid rgb(215 193 143 / 75%);
+  padding: 6px;
+  position: absolute;
+  top: 50%;
+  right: clamp(12px, 3.5vw, 54px);
+  border: 1px solid rgb(215 193 143 / 80%);
   background: var(--paper);
+  transform: translateY(-50%);
 }
 
 .cover-sacramental-image {
@@ -248,28 +279,29 @@ a {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  mix-blend-mode: multiply;
 }
 
 .cover-visuals {
-  width: min(1140px, calc(100% - 24px));
-  margin: 20px auto 0;
+  width: min(1320px, calc(100% - 24px));
+  margin: 12px auto 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.76fr) minmax(0, 1fr);
   grid-template-areas: "jesus processions maria";
   align-items: end;
-  gap: clamp(16px, 2.4vw, 34px);
+  gap: clamp(16px, 2vw, 30px);
 }
 
 .cover-titular-frame {
   min-width: 0;
   aspect-ratio: 4 / 5;
   margin: 0;
+  padding: 0 8px;
   display: grid;
   place-items: center;
-  border-top: 1px solid rgb(215 193 143 / 70%);
-  border-bottom: 1px solid rgb(215 193 143 / 36%);
-  background: linear-gradient(180deg, rgb(30 6 13 / 14%), rgb(30 6 13 / 48%));
+  border: 1px solid rgb(215 193 143 / 42%);
+  background:
+    linear-gradient(180deg, rgb(30 6 13 / 6%), rgb(30 6 13 / 30%)),
+    radial-gradient(ellipse at 50% 100%, rgb(185 132 66 / 14%), transparent 60%);
 }
 
 .cover-titular-frame--jesus {
@@ -294,14 +326,14 @@ a {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: end;
-  gap: clamp(8px, 1vw, 16px);
+  gap: clamp(8px, 1.2vw, 18px);
 }
 
 .cover-procession-frame {
   width: 100%;
-  max-width: 180px;
+  max-width: 190px;
   margin: 0 auto;
-  padding: 4px;
+  padding: 5px;
   display: grid;
   align-items: end;
   border: 1px solid rgb(215 193 143 / 72%);
@@ -317,34 +349,35 @@ a {
 
 .cover-shortcuts {
   width: min(1320px, 100%);
-  margin: 26px auto 0;
+  margin: 24px auto 0;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .cover-shortcut {
   min-width: 0;
-  min-height: 112px;
-  padding: 14px 12px;
+  min-height: 104px;
+  padding: 13px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   border: 1px solid rgb(215 193 143 / 75%);
-  background: rgb(39 8 17 / 82%);
+  background: linear-gradient(145deg, rgb(39 8 17 / 94%), rgb(63 14 29 / 94%));
   color: var(--paper);
   font-size: 20px;
   line-height: 1.2;
   text-align: center;
-  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 .cover-shortcut:hover,
 .cover-shortcut:focus-visible {
   border-color: var(--gold-light);
   background: rgb(91 22 37 / 94%);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
   transform: translateY(-2px);
 }
 
@@ -1097,17 +1130,33 @@ a:focus-visible {
   }
 
   .cover-identity {
-    min-height: 190px;
-    grid-template-columns: minmax(100px, 0.55fr) minmax(0, 1.6fr) minmax(140px, 0.7fr);
-    gap: 18px;
+    min-height: 240px;
+  }
+
+  .cover-brand {
+    width: min(100%, 620px);
+    gap: 10px;
+  }
+
+  .official-crest--cover {
+    width: 82px;
   }
 
   .cover-heading h1 span {
-    font-size: clamp(27px, 3.5vw, 36px);
+    font-size: clamp(25px, 3.8vw, 36px);
   }
 
   .cover-heading h1 em {
     font-size: clamp(46px, 6vw, 68px);
+  }
+
+  .cover-heading p {
+    margin-top: 9px;
+  }
+
+  .cover-sacramental {
+    width: clamp(112px, 15vw, 145px);
+    right: 0;
   }
 
   .cover-visuals {
@@ -1173,6 +1222,22 @@ a:focus-visible {
   }
 }
 
+@media (min-width: 641px) and (max-width: 760px) {
+  .cover-identity {
+    min-height: auto;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cover-sacramental {
+    width: 120px;
+    position: static;
+    transform: none;
+  }
+}
+
 @media (min-width: 641px) and (max-width: 900px) {
   .titular-title {
     min-height: 3.75em;
@@ -1198,18 +1263,23 @@ a:focus-visible {
 
   .cover-identity {
     min-height: auto;
-    grid-template-columns: 76px minmax(0, 1fr);
-    align-items: center;
+    padding-bottom: 4px;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
   }
 
+  .cover-brand {
+    width: 100%;
+    gap: 8px;
+  }
+
   .official-crest--cover {
-    width: 76px;
-    padding: 4px;
+    width: 70px;
   }
 
   .cover-heading {
-    text-align: left;
+    text-align: center;
   }
 
   .cover-heading h1 {
@@ -1225,16 +1295,15 @@ a:focus-visible {
   }
 
   .cover-heading p {
-    margin-top: 9px;
+    margin-top: 8px;
     font-size: 20px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
   }
 
   .cover-sacramental {
-    grid-column: 1 / -1;
-    width: min(168px, 48vw);
-    margin-top: 2px;
-    padding: 3px;
+    width: min(142px, 42vw);
+    position: static;
+    transform: none;
   }
 
   .cover-visuals {

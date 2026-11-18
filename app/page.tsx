@@ -195,15 +195,17 @@ export default function Home() {
       <header className="cover" id="inicio" aria-labelledby="cover-title">
         <div className="cover-inner">
           <div className="cover-identity">
-            <div className="cover-crest">
-              <OfficialCrest placement="cover" />
-            </div>
-            <div className="cover-heading">
-              <h1 id="cover-title">
-                <span>Hermandad Sacramental de la</span>
-                <em>Candelaria</em>
-              </h1>
-              <p>Jerez de la Frontera</p>
+            <div className="cover-brand">
+              <div className="cover-crest">
+                <OfficialCrest placement="cover" />
+              </div>
+              <div className="cover-heading">
+                <h1 id="cover-title">
+                  <span>Hermandad Sacramental de la</span>
+                  <em>Candelaria</em>
+                </h1>
+                <p>Jerez de la Frontera</p>
+              </div>
             </div>
             <figure className="cover-sacramental">
               <Image

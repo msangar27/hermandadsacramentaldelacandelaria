@@ -15,19 +15,22 @@ const navigation = [
 
 const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1000&q=85",
-    alt: "Interior de una iglesia iluminada",
+    src: `${basePath}/titulares/1.jpg`,
+    alt: "Nuestro Padre Jesús de las Misericordias",
     className: "gallery-image gallery-image-tall",
+    caption: "Nuestro Padre Jesús",
   },
   {
-    src: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1000&q=85",
-    alt: "Detalle arquitectónico de un templo",
+    src: `${basePath}/titulares/2.jpg`,
+    alt: "María Santísima de la Candelaria",
     className: "gallery-image",
+    caption: "María Santísima",
   },
   {
-    src: "https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=1000&q=85",
-    alt: "Escena religiosa de archivo",
+    src: `${basePath}/titulares/antiguo%20se%C3%B1or.jpg`,
+    alt: "Antigua imagen de Nuestro Padre Jesús de las Misericordias",
     className: "gallery-image",
+    caption: "Antigua imagen del Señor",
   },
 ];
 
@@ -277,14 +280,14 @@ export default function Home() {
 
       <main>
         <section
-          className="estandarte-section"
-          aria-label="Estandarte de la Hermandad Sacramental de la Candelaria"
+          className="cover-art-section"
+          aria-label="Diseño de portada de la Hermandad Sacramental de la Candelaria"
         >
-          <figure className="estandarte-frame">
+          <figure className="cover-art-frame">
             <Image
-              className="estandarte-image"
+              className="cover-art-image"
               src={`${basePath}/Estandarte%20de%20la%20Hermandad%20de%20la%20Candelaria.png`}
-              alt="Diseño del estandarte de la Hermandad Sacramental de la Candelaria"
+              alt="Diseño de portada de la Hermandad Sacramental de la Candelaria"
               width={1672}
               height={941}
               unoptimized
@@ -450,7 +453,11 @@ export default function Home() {
         </section>
 
         <section className="worship-section" id="cultos">
-          <div className="worship-image" role="img" aria-label="Fotografía provisional de una escena religiosa" />
+          <div
+            className="worship-image"
+            role="img"
+            aria-label="Fotografía de procesión de Nuestro Padre Jesús de las Misericordias"
+          />
           <div className="worship-panel">
             <SectionHeading
               eyebrow="Vida de Hermandad"
@@ -464,7 +471,6 @@ export default function Home() {
             <a className="text-link" href="#calendario">
               Consultar calendario <span aria-hidden="true">→</span>
             </a>
-            <span className="photo-tag">Fotografía provisional</span>
           </div>
         </section>
 
@@ -490,7 +496,7 @@ export default function Home() {
                 title="Galería fotográfica"
                 description="Momentos y recuerdos de nuestra Hermandad."
               />
-              <span className="gallery-note">Imágenes provisionales</span>
+              <span className="gallery-note">Imágenes de nuestra Hermandad</span>
             </div>
             <div className="gallery-grid">
               {galleryImages.map((image) => (
@@ -498,10 +504,10 @@ export default function Home() {
                   <div
                     className="image-fill"
                     role="img"
-                    aria-label={`${image.alt}. Fotografía provisional.`}
+                    aria-label={image.alt}
                     style={{ backgroundImage: `url("${image.src}")` }}
                   />
-                  <figcaption>Fotografía provisional</figcaption>
+                  <figcaption>{image.caption}</figcaption>
                 </figure>
               ))}
             </div>

@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const basePath = "/hermandadsacramentaldelacandelaria";
+
 const navigation = [
   { label: "Inicio", href: "#inicio" },
   { label: "Historia", href: "#historia" },
@@ -36,13 +38,13 @@ const titularGroups = [
       "Nuestro Padre Jesús de las Misericordias es una de las grandes devociones de nuestra Hermandad. La imagen actual fue realizada por el imaginero jerezano Francisco Pinto Berraquero en 1977, sustituyendo a la primitiva talla de Antonio Castillo Lastrucci. La primera estación de penitencia de la Hermandad con la imagen primitiva tuvo lugar el Lunes Santo de 1958, iniciando así una historia de fe y devoción por las calles de Jerez.",
     photos: [
       {
-        src: "/titulares/1.jpg",
+        src: `${basePath}/titulares/1.jpg`,
         alt: "Nuestro Padre Jesús de las Misericordias, fotografía 1",
         width: 4000,
         height: 5299,
       },
       {
-        src: "/titulares/3.jpg",
+        src: `${basePath}/titulares/3.jpg`,
         alt: "Nuestro Padre Jesús de las Misericordias, fotografía 3",
         width: 180,
         height: 306,
@@ -55,13 +57,13 @@ const titularGroups = [
       "María Santísima de la Candelaria, Madre y protectora de nuestra Hermandad, es símbolo de amor, consuelo y esperanza para todos sus devotos. La imagen fue realizada en 1959 por el imaginero jerezano Manuel Prieto Fernández. En 1969 realizó por primera vez su estación de penitencia bajo palio, incorporándose al cortejo procesional y acompañando desde entonces a sus hijos por las calles de Jerez.",
     photos: [
       {
-        src: "/titulares/2.jpg",
+        src: `${basePath}/titulares/2.jpg`,
         alt: "María Santísima de la Candelaria, fotografía 2",
         width: 4000,
         height: 5226,
       },
       {
-        src: "/titulares/4.jpg",
+        src: `${basePath}/titulares/4.jpg`,
         alt: "María Santísima de la Candelaria, fotografía 4",
         width: 214,
         height: 309,
@@ -92,13 +94,21 @@ function PlaceholderNotice({ children }: { children: React.ReactNode }) {
   return <p className="placeholder-notice">{children}</p>;
 }
 
-function OfficialCrest({ placement }: { placement: "header" | "footer" }) {
+function OfficialCrest({
+  placement,
+}: {
+  placement: "header" | "footer" | "welcome";
+}) {
   return (
     <span className={`official-crest official-crest--${placement}`}>
       <Image
         className="official-crest-image"
-        src="/escudo-candelaria.png"
-        alt=""
+        src={`${basePath}/escudo-candelaria.png`}
+        alt={
+          placement === "welcome"
+            ? "Escudo oficial de la Hermandad Sacramental de la Candelaria"
+            : ""
+        }
         width={1199}
         height={1312}
         unoptimized
@@ -167,11 +177,12 @@ export default function Home() {
           </a>
         </section>
 
-        <section className="welcome section-shell" aria-labelledby="welcome-title">
-          <div className="welcome-mark" aria-hidden="true">
-            <span>✣</span>
-          </div>
-          <div>
+        <section
+          className="welcome section-shell"
+          aria-labelledby="welcome-title"
+        >
+          <OfficialCrest placement="welcome" />
+          <div className="welcome-copy">
             <span className="eyebrow">Bienvenidos</span>
             <h2 id="welcome-title">
               Fe, tradición y
@@ -187,25 +198,87 @@ export default function Home() {
         </section>
 
         <section className="history-section section-shell" id="historia">
-          <div className="history-copy">
-            <SectionHeading
-              eyebrow="Nuestra Hermandad"
-              title="Historia"
-              description="Un camino de fe y devoción compartido."
-            />
-            <PlaceholderNotice>
-              El contenido histórico oficial se incorporará cuando esté
-              disponible y validado por la Hermandad.
-            </PlaceholderNotice>
+          <SectionHeading
+            eyebrow="Nuestra Hermandad"
+            title="Historia de nuestra Hermandad"
+          />
+          <div className="history-intro">
+            <p>
+              La historia de la Hermandad Sacramental de la Candelaria está
+              profundamente unida al barrio de La Plata, en Jerez de la
+              Frontera. Sus orígenes se remontan a 1955, cuando un grupo de
+              vecinos, movidos por la fe y la ilusión cofrade, comenzó a
+              trabajar en la creación de una Hermandad que representara a su
+              barrio y acercara la devoción a sus vecinos.
+            </p>
+            <p>
+              Tras varios años de esfuerzo y dedicación, el{" "}
+              <strong>9 de abril de 1957</strong> fueron aprobadas sus primeras
+              reglas, quedando constituida oficialmente la corporación. Su
+              primera estación de penitencia tuvo lugar el{" "}
+              <strong>Lunes Santo de 1958</strong>, con Nuestro Padre Jesús de
+              las Misericordias y la Santa Mujer Verónica, imágenes realizadas
+              por el imaginero sevillano Antonio Castillo Lastrucci.
+            </p>
           </div>
-          <div className="history-image image-frame">
-            <div
-              className="image-fill history-photo"
-              role="img"
-              aria-label="Fotografía provisional de arquitectura religiosa"
-            />
-            <span className="photo-tag">Fotografía provisional</span>
-          </div>
+
+          <article
+            className="history-feature"
+            aria-labelledby="history-change-title"
+          >
+            <figure className="history-feature-image">
+              <div className="history-feature-photo-frame">
+                <Image
+                  className="history-feature-photo"
+                  src={`${basePath}/titulares/antiguo señor.jpg`}
+                  alt="Antigua imagen de Nuestro Padre Jesús de las Misericordias"
+                  width={387}
+                  height={516}
+                  unoptimized
+                />
+              </div>
+            </figure>
+            <div className="history-feature-copy">
+              <h3 id="history-change-title">
+                El cambio de la imagen del Señor
+              </h3>
+              <p>
+                La primera imagen de Nuestro Padre Jesús de las Misericordias
+                ocupó un lugar fundamental en los comienzos de nuestra
+                Hermandad. Sin embargo, con el paso de los años, la talla sufrió
+                un importante deterioro debido a la acción de la carcoma,
+                alcanzando un estado de conservación que hizo imposible su
+                recuperación.
+              </p>
+              <p>
+                Ante esta situación, la Hermandad tomó la difícil decisión de
+                encargar una nueva imagen al imaginero jerezano Francisco Pinto
+                Berraquero. Fruto de su trabajo nació la actual imagen de
+                Nuestro Padre Jesús de las Misericordias, que fue bendecida el{" "}
+                <strong>22 de enero de 1977</strong>, convirtiéndose desde
+                entonces en centro de la devoción de hermanos y fieles.
+              </p>
+            </div>
+          </article>
+
+          <article className="history-closing">
+            <h3>Una devoción que permanece</h3>
+            <p>
+              A lo largo de su trayectoria, la Hermandad ha ido creciendo
+              gracias al compromiso, la entrega y la fe de numerosas
+              generaciones de hermanos. La incorporación de María Santísima de
+              la Candelaria enriqueció la vida espiritual y cofrade de la
+              corporación, convirtiéndose junto al Señor en uno de sus pilares
+              fundamentales.
+            </p>
+            <p>
+              Hoy, la Hermandad continúa manteniendo vivo aquel espíritu de sus
+              fundadores, con sus raíces en el barrio de La Plata y su mirada
+              puesta en el futuro. Una historia construida con fe, tradición y
+              amor a nuestros Sagrados Titulares, que sigue escribiéndose cada
+              día en Jerez.
+            </p>
+          </article>
         </section>
 
         <section className="titulares-section" id="titulares">

@@ -10,7 +10,7 @@
   --ink: #292421;
   --muted: #77716a;
   --line: #e4ded2;
-  --hero-image: url("/jerez-portada-provisional.jpg");
+  --hero-image: url("/hermandadsacramentaldelacandelaria/jerez-portada-provisional.jpg");
 }
 
 @theme inline {
@@ -33,6 +33,7 @@ body {
   background: var(--ivory);
   color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -235,7 +236,6 @@ a {
 .hero-content > p {
   margin: 0 0 31px;
   color: rgb(255 255 255 / 84%);
-  font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
 }
@@ -288,7 +288,7 @@ a {
 
 .hero-photo-credit {
   position: absolute;
-  top: 54px;
+  top: 82px;
   right: 22px;
   z-index: 2;
   max-width: calc(100% - 44px);
@@ -338,22 +338,21 @@ a {
   padding-top: 80px;
   padding-bottom: 80px;
   display: grid;
-  grid-template-columns: 0.8fr 1.5fr;
+  grid-template-columns: 120px minmax(0, 680px);
+  justify-content: center;
+  justify-items: stretch;
   align-items: center;
-  gap: 56px;
+  gap: 32px;
+  text-align: left;
 }
 
-.welcome-mark {
-  width: 186px;
-  height: 186px;
-  margin: auto;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--gold);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 70px;
+.official-crest--welcome {
+  width: 120px;
+  height: 132px;
+}
+
+.welcome-copy {
+  max-width: 680px;
 }
 
 .welcome h2,
@@ -372,6 +371,10 @@ a {
   color: var(--gold);
 }
 
+.welcome p {
+  margin: 0;
+}
+
 .welcome p,
 .section-heading > p,
 .news-card p,
@@ -379,17 +382,105 @@ a {
 .contact-section > p {
   max-width: 520px;
   color: var(--muted);
-  font-size: 13px;
   line-height: 1.9;
 }
 
 .history-section {
   padding-top: 38px;
   padding-bottom: 96px;
+}
+
+.history-section > .section-heading {
+  text-align: center;
+}
+
+.history-intro,
+.history-closing {
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.history-intro {
+  margin-top: 30px;
+}
+
+.history-intro p,
+.history-feature-copy p,
+.history-closing p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.history-intro p + p,
+.history-feature-copy p + p,
+.history-closing p + p {
+  margin-top: 18px;
+}
+
+.history-feature {
+  margin-top: 42px;
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  align-items: center;
-  gap: 90px;
+  grid-template-columns: minmax(0, 0.35fr) minmax(0, 0.65fr);
+  align-items: stretch;
+  gap: 40px;
+}
+
+.history-feature-image {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.history-feature-photo-frame {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+.history-feature-photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(0.87);
+}
+
+.history-feature-copy {
+  min-width: 0;
+  align-self: center;
+}
+
+.history-feature-copy h3,
+.history-closing h3 {
+  margin: 0 0 16px;
+  color: var(--burgundy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(27px, 3vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.history-closing {
+  margin-top: 44px;
+}
+
+.history-closing h3 {
+  color: var(--gold);
+  text-align: center;
+}
+
+.history-section strong {
+  color: var(--burgundy);
+  font-weight: 700;
 }
 
 .section-heading h2 {
@@ -407,7 +498,6 @@ a {
   border-left: 2px solid var(--gold);
   background: rgb(255 255 255 / 40%);
   color: #746d64;
-  font-size: 11px;
   line-height: 1.75;
 }
 
@@ -422,14 +512,6 @@ a {
   height: 100%;
   background-position: center;
   background-size: cover;
-}
-
-.history-image {
-  height: 350px;
-}
-
-.history-photo {
-  background-image: url("https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=85");
 }
 
 .titulares-section {
@@ -447,20 +529,27 @@ a {
   min-width: 0;
   margin: 46px auto 0;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
   gap: 36px;
 }
 
 .titular-card {
   min-width: 0;
+  height: 100%;
   padding: 26px 0 30px;
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid var(--gold);
   overflow: hidden;
-  background: var(--paper);
 }
 
 .titular-title {
   margin: 0 16px 24px;
+  min-height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--burgundy);
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(24px, 2.7vw, 30px);
@@ -481,10 +570,9 @@ a {
 
 .titular-description {
   max-width: 800px;
-  margin: 26px auto 0;
-  padding: 0 20px;
+  margin: auto auto 0;
+  padding: 26px 20px 0;
   color: var(--muted);
-  font-size: 15px;
   line-height: 1.9;
   text-align: center;
 }
@@ -496,9 +584,6 @@ a {
   min-height: 0;
   width: 100%;
   margin: 0;
-  padding: 8px;
-  border: 1px solid var(--line);
-  background: var(--ivory);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -514,15 +599,14 @@ a {
 
 .news-card p {
   margin: 0;
-  font-size: 12px;
 }
 
 .titular-photo {
   position: absolute;
-  inset: 8px;
+  inset: 0;
   display: block;
-  width: calc(100% - 16px);
-  height: calc(100% - 16px);
+  width: 100%;
+  height: 100%;
   min-width: 0;
   min-height: 0;
   object-fit: contain;
@@ -666,8 +750,6 @@ a {
 .calendar-empty p {
   margin: 0;
   color: var(--muted);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px;
   line-height: 1.5;
 }
 
@@ -695,7 +777,7 @@ a {
   margin: 0;
   position: relative;
   overflow: hidden;
-  background: #e5dfd4;
+  background: transparent;
 }
 
 .gallery-image .image-fill {
@@ -750,7 +832,6 @@ a {
   max-width: 430px;
   margin: 7px auto;
   color: rgb(255 255 255 / 69%);
-  font-size: 12px;
 }
 
 .contact-divider {
@@ -809,6 +890,15 @@ a:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .welcome {
+    grid-template-columns: 112px minmax(0, 1fr);
+  }
+
+  .official-crest--welcome {
+    width: 112px;
+    height: 123px;
+  }
+
   .nav-inner {
     justify-content: flex-start;
     gap: 27px;
@@ -824,13 +914,36 @@ a:focus-visible {
     flex: 0 0 auto;
   }
 
-  .history-section {
-    gap: 42px;
+  .history-feature {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .history-feature-image {
+    width: min(100%, 245px);
+    aspect-ratio: 3 / 4;
+    margin: 0 auto;
+  }
+
+  .history-feature-photo {
+    transform: none;
+  }
+
+  .history-intro p,
+  .history-feature-copy p,
+  .history-closing p {
+    line-height: 1.85;
   }
 
   .worship-panel {
     padding-right: 36px;
     padding-left: 36px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .titular-title {
+    min-height: 3.75em;
   }
 }
 
@@ -896,11 +1009,12 @@ a:focus-visible {
   .hero > .photo-tag {
     top: 14px;
     right: 12px;
+    max-width: calc(100% - 24px);
     font-size: 8px;
   }
 
   .hero-photo-credit {
-    top: 45px;
+    top: 100px;
     right: 12px;
     font-size: 7px;
   }
@@ -914,14 +1028,14 @@ a:focus-visible {
     padding-top: 67px;
     padding-bottom: 68px;
     grid-template-columns: 1fr;
+    justify-items: center;
     gap: 28px;
     text-align: center;
   }
 
-  .welcome-mark {
-    width: 118px;
-    height: 118px;
-    font-size: 51px;
+  .official-crest--welcome {
+    width: 104px;
+    height: 114px;
   }
 
   .welcome p {
@@ -931,12 +1045,41 @@ a:focus-visible {
   .history-section {
     padding-top: 20px;
     padding-bottom: 70px;
-    grid-template-columns: 1fr;
-    gap: 32px;
   }
 
-  .history-image {
-    height: 280px;
+  .history-intro {
+    margin-top: 24px;
+  }
+
+  .history-feature {
+    margin-top: 32px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .history-feature-image {
+    width: 100%;
+    min-height: 320px;
+    aspect-ratio: auto;
+  }
+
+  .history-feature-photo {
+    transform: scale(1.06);
+  }
+
+  .history-feature-copy h3,
+  .history-closing h3 {
+    font-size: 27px;
+  }
+
+  .history-intro p,
+  .history-feature-copy p,
+  .history-closing p {
+    line-height: 1.9;
+  }
+
+  .history-closing {
+    margin-top: 32px;
   }
 
   .titulares-section,
@@ -956,13 +1099,17 @@ a:focus-visible {
 
   .titular-title {
     margin-bottom: 20px;
+    min-height: 0;
     font-size: 24px;
+  }
+
+  .titulares-grid {
+    grid-template-columns: 1fr;
   }
 
   .titular-description {
     margin-top: 20px;
     padding: 0 14px;
-    font-size: 14px;
     line-height: 1.8;
   }
 
@@ -1033,15 +1180,12 @@ a:focus-visible {
     gap: 16px;
   }
 
-  .calendar-empty p {
-    font-size: 16px;
-  }
-
   .gallery-note {
     max-width: 95px;
     padding-top: 12px;
     font-size: 8px;
     line-height: 1.5;
+    overflow-wrap: anywhere;
     text-align: right;
   }
 

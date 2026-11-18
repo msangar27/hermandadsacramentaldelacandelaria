@@ -72,6 +72,30 @@ const titularGroups = [
   },
 ];
 
+const coverTitulares = titularGroups.map((titular) => ({
+  title: titular.title,
+  photo: titular.photos[0],
+}));
+
+const processionPhotos = titularGroups.map((titular) => ({
+  title: titular.title,
+  photo: titular.photos[1],
+}));
+
+type CoverAccessIconName = "calendar" | "community" | "gallery" | "news" | "heart";
+
+const coverAccesses: {
+  label: string;
+  href: string;
+  icon: CoverAccessIconName;
+}[] = [
+  { label: "Calendario de Cultos", href: "#calendario", icon: "calendar" },
+  { label: "Vida de Hermandad", href: "#cultos", icon: "community" },
+  { label: "Galería Fotográfica", href: "#galeria", icon: "gallery" },
+  { label: "Noticias y Actualidad", href: "#noticias", icon: "news" },
+  { label: "Colabora con tu Hermandad", href: "#contacto", icon: "heart" },
+];
+
 function SectionHeading({
   eyebrow,
   title,
@@ -90,6 +114,54 @@ function SectionHeading({
   );
 }
 
+function CoverAccessIcon({ name }: { name: CoverAccessIconName }) {
+  const iconProps = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  switch (name) {
+    case "calendar":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...iconProps}>
+          <rect x="4" y="5" width="16" height="16" rx="1.5" />
+          <path d="M8 3v4m8-4v4M4 10h16M8 14h2m4 0h2m-8 3h2m4 0h2" />
+        </svg>
+      );
+    case "community":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...iconProps}>
+          <circle cx="9" cy="8" r="3" />
+          <path d="M3.5 20v-1a5.5 5.5 0 0 1 11 0v1m2-9a3 3 0 1 0-1-5.8M18 14a4 4 0 0 1 2.5 3.7V20" />
+        </svg>
+      );
+    case "gallery":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...iconProps}>
+          <rect x="3" y="4" width="18" height="16" rx="1.5" />
+          <circle cx="8.5" cy="9" r="1.5" />
+          <path d="m4 17 5-5 3 3 3-4 5 6" />
+        </svg>
+      );
+    case "news":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...iconProps}>
+          <path d="M6 3.5h9l3 3V21H6z" />
+          <path d="M15 3.5V7h3m-9 4h6m-6 3h6m-6 3h6" />
+        </svg>
+      );
+    case "heart":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" {...iconProps}>
+          <path d="M20.5 8.8c0 5-8.5 10-8.5 10s-8.5-5-8.5-10a4.2 4.2 0 0 1 7.1-3L12 7l1.4-1.2a4.2 4.2 0 0 1 7.1 3Z" />
+        </svg>
+      );
+  }
+}
+
 function PlaceholderNotice({ children }: { children: React.ReactNode }) {
   return <p className="placeholder-notice">{children}</p>;
 }
@@ -97,7 +169,7 @@ function PlaceholderNotice({ children }: { children: React.ReactNode }) {
 function OfficialCrest({
   placement,
 }: {
-  placement: "header" | "footer" | "welcome";
+  placement: "cover" | "footer" | "header" | "welcome";
 }) {
   return (
     <span className={`official-crest official-crest--${placement}`}>
@@ -105,7 +177,7 @@ function OfficialCrest({
         className="official-crest-image"
         src={`${basePath}/escudo-candelaria.png`}
         alt={
-          placement === "welcome"
+          placement === "cover" || placement === "welcome"
             ? "Escudo oficial de la Hermandad Sacramental de la Candelaria"
             : ""
         }
@@ -120,16 +192,75 @@ function OfficialCrest({
 export default function Home() {
   return (
     <>
-      <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="Ir al inicio">
-          <OfficialCrest placement="header" />
-          <span className="brand-copy">
-            <span className="brand-name">
-              Hermandad Sacramental de la Candelaria
-            </span>
-            <span className="brand-location">Jerez de la Frontera</span>
-          </span>
-        </a>
+      <header className="cover" id="inicio" aria-labelledby="cover-title">
+        <div className="cover-inner">
+          <div className="cover-identity">
+            <div className="cover-crest">
+              <OfficialCrest placement="cover" />
+            </div>
+            <div className="cover-heading">
+              <h1 id="cover-title">
+                <span>Hermandad Sacramental de la</span>
+                <em>Candelaria</em>
+              </h1>
+              <p>Jerez de la Frontera</p>
+            </div>
+            <figure className="cover-sacramental">
+              <Image
+                className="cover-sacramental-image"
+                src={`${basePath}/sacramaento.jpeg`}
+                alt="Ilustración de una custodia, la Santa Mujer Verónica y un elemento floral"
+                width={1600}
+                height={1600}
+                unoptimized
+              />
+            </figure>
+          </div>
+
+          <div className="cover-visuals">
+            {coverTitulares.map((titular, index) => (
+              <figure
+                className={`cover-titular-frame cover-titular-frame--${
+                  index === 0 ? "jesus" : "maria"
+                }`}
+                key={titular.photo.src}
+              >
+                <Image
+                  className="cover-titular-photo"
+                  src={titular.photo.src}
+                  alt={titular.title}
+                  width={titular.photo.width}
+                  height={titular.photo.height}
+                  unoptimized
+                />
+              </figure>
+            ))}
+
+            <div className="cover-processions" role="group" aria-label="Fotografías de procesión">
+              {processionPhotos.map(({ title, photo }) => (
+                <figure className="cover-procession-frame" key={photo.src}>
+                  <Image
+                    className="cover-procession-photo"
+                    src={photo.src}
+                    alt={`${title}, fotografía de procesión`}
+                    width={photo.width}
+                    height={photo.height}
+                    unoptimized
+                  />
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <nav className="cover-shortcuts" aria-label="Accesos destacados">
+            {coverAccesses.map((access) => (
+              <a className="cover-shortcut" href={access.href} key={access.href}>
+                <CoverAccessIcon name={access.icon} />
+                <span>{access.label}</span>
+              </a>
+            ))}
+          </nav>
+        </div>
       </header>
 
       <nav className="main-nav" aria-label="Navegación principal">
@@ -143,40 +274,6 @@ export default function Home() {
       </nav>
 
       <main>
-        <section className="hero" id="inicio" aria-labelledby="hero-title">
-          <div
-            className="hero-photo"
-            role="img"
-            aria-label="Fotografía provisional de la Plaza del Arenal en Jerez de la Frontera"
-          />
-          <div className="hero-shade" />
-          <div className="hero-content">
-            <span className="hero-kicker">Hermandad Sacramental</span>
-            <h1 id="hero-title">
-              Hermandad de
-              <br />
-              <em>La Candelaria</em>
-            </h1>
-            <span className="hero-divider" aria-hidden="true" />
-            <p>Jerez de la Frontera</p>
-            <a className="button button-gold" href="#historia">
-              Conócenos <span aria-hidden="true">→</span>
-            </a>
-          </div>
-          <span className="photo-tag">Fotografía provisional de Jerez</span>
-          <a
-            className="hero-photo-credit"
-            href="https://commons.wikimedia.org/wiki/File:Arenal,_Jerez_de_la_Frontera,_2023_(02).jpg"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Plaza del Arenal · Draceane / Wikimedia Commons · CC BY-SA 4.0
-          </a>
-          <a className="hero-scroll" href="#historia">
-            <span aria-hidden="true">↓</span> Descubrir
-          </a>
-        </section>
-
         <section
           className="welcome section-shell"
           aria-labelledby="welcome-title"

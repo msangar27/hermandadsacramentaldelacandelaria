@@ -153,6 +153,208 @@ a {
   color: var(--gold-light);
 }
 
+.cover {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 0 24px;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgb(126 35 50 / 38%), transparent 58%),
+    linear-gradient(135deg, #4a1725, #32101a 56%, #250b13);
+  color: var(--paper);
+}
+
+.cover::before {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgb(215 193 143 / 42%);
+  content: "";
+  pointer-events: none;
+}
+
+.cover-inner {
+  position: relative;
+  width: min(1440px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.cover-identity {
+  min-height: 215px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.7fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: clamp(18px, 3vw, 44px);
+}
+
+.cover-crest,
+.cover-heading {
+  min-width: 0;
+}
+
+.official-crest--cover {
+  width: clamp(110px, 11vw, 150px);
+  height: auto;
+  aspect-ratio: 1199 / 1312;
+  padding: 8px;
+  border: 1px solid rgb(215 193 143 / 75%);
+  background: var(--paper);
+  justify-self: center;
+}
+
+.cover-heading {
+  text-align: center;
+}
+
+.cover-heading h1 {
+  margin: 0;
+  color: var(--paper);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.cover-heading h1 span {
+  display: block;
+  font-size: clamp(28px, 3.2vw, 47px);
+}
+
+.cover-heading h1 em {
+  display: block;
+  margin-top: 2px;
+  color: var(--gold-light);
+  font-size: clamp(48px, 6vw, 84px);
+  font-weight: 400;
+}
+
+.cover-heading p {
+  margin: 14px 0 0;
+  color: rgb(252 250 245 / 88%);
+  font-size: 20px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cover-sacramental {
+  width: clamp(150px, 18vw, 220px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  padding: 5px;
+  border: 1px solid rgb(215 193 143 / 75%);
+  background: var(--paper);
+}
+
+.cover-sacramental-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.cover-visuals {
+  width: min(1140px, calc(100% - 24px));
+  margin: 20px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr) minmax(0, 1fr);
+  grid-template-areas: "jesus processions maria";
+  align-items: end;
+  gap: clamp(16px, 2.4vw, 34px);
+}
+
+.cover-titular-frame {
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  border-top: 1px solid rgb(215 193 143 / 70%);
+  border-bottom: 1px solid rgb(215 193 143 / 36%);
+  background: linear-gradient(180deg, rgb(30 6 13 / 14%), rgb(30 6 13 / 48%));
+}
+
+.cover-titular-frame--jesus {
+  grid-area: jesus;
+}
+
+.cover-titular-frame--maria {
+  grid-area: maria;
+}
+
+.cover-titular-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.cover-processions {
+  grid-area: processions;
+  align-self: end;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  gap: clamp(8px, 1vw, 16px);
+}
+
+.cover-procession-frame {
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto;
+  padding: 4px;
+  display: grid;
+  align-items: end;
+  border: 1px solid rgb(215 193 143 / 72%);
+  background: var(--paper);
+}
+
+.cover-procession-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.cover-shortcuts {
+  width: min(1320px, 100%);
+  margin: 26px auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cover-shortcut {
+  min-width: 0;
+  min-height: 112px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgb(215 193 143 / 75%);
+  background: rgb(39 8 17 / 82%);
+  color: var(--paper);
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.cover-shortcut:hover,
+.cover-shortcut:focus-visible {
+  border-color: var(--gold-light);
+  background: rgb(91 22 37 / 94%);
+  transform: translateY(-2px);
+}
+
+.cover-shortcut svg {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  color: var(--gold-light);
+}
+
 .hero {
   min-height: min(690px, 76vw);
   min-height: clamp(530px, 67vw, 690px);
@@ -890,6 +1092,36 @@ a:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .cover-inner {
+    width: calc(100% - 48px);
+  }
+
+  .cover-identity {
+    min-height: 190px;
+    grid-template-columns: minmax(100px, 0.55fr) minmax(0, 1.6fr) minmax(140px, 0.7fr);
+    gap: 18px;
+  }
+
+  .cover-heading h1 span {
+    font-size: clamp(27px, 3.5vw, 36px);
+  }
+
+  .cover-heading h1 em {
+    font-size: clamp(46px, 6vw, 68px);
+  }
+
+  .cover-visuals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "jesus maria"
+      "processions processions";
+    gap: 18px;
+  }
+
+  .cover-shortcuts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .welcome {
     grid-template-columns: 112px minmax(0, 1fr);
   }
@@ -950,6 +1182,100 @@ a:focus-visible {
 @media (max-width: 640px) {
   html {
     scroll-padding-top: 65px;
+  }
+
+  .cover {
+    padding: 22px 0 20px;
+  }
+
+  .cover::before {
+    inset: 7px;
+  }
+
+  .cover-inner {
+    width: calc(100% - 32px);
+  }
+
+  .cover-identity {
+    min-height: auto;
+    grid-template-columns: 76px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+  }
+
+  .official-crest--cover {
+    width: 76px;
+    padding: 4px;
+  }
+
+  .cover-heading {
+    text-align: left;
+  }
+
+  .cover-heading h1 {
+    letter-spacing: -0.025em;
+  }
+
+  .cover-heading h1 span {
+    font-size: clamp(24px, 6.2vw, 32px);
+  }
+
+  .cover-heading h1 em {
+    font-size: clamp(34px, 9.5vw, 50px);
+  }
+
+  .cover-heading p {
+    margin-top: 9px;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .cover-sacramental {
+    grid-column: 1 / -1;
+    width: min(168px, 48vw);
+    margin-top: 2px;
+    padding: 3px;
+  }
+
+  .cover-visuals {
+    width: 100%;
+    margin-top: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "jesus maria"
+      "processions processions";
+    gap: 12px;
+  }
+
+  .cover-processions {
+    width: min(100%, 400px);
+    justify-self: center;
+    gap: 8px;
+  }
+
+  .cover-procession-frame {
+    max-width: 160px;
+    padding: 3px;
+  }
+
+  .cover-shortcuts {
+    margin-top: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .cover-shortcut {
+    min-height: 106px;
+    padding: 12px 8px;
+  }
+
+  .cover-shortcut:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .cover-shortcut svg {
+    width: 30px;
+    height: 30px;
   }
 
   .site-header {
